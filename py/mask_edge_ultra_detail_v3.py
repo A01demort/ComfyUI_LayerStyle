@@ -12,7 +12,7 @@ class MaskEdgeUltraDetailV3:
     @classmethod
     def INPUT_TYPES(cls):
 
-        method_list = ['VITMatte', 'VITMatte(local)', 'PyMatting', 'GuidedFilter', ]
+        method_list = ['VITMatte', 'VITMatte(local)', 'vitmatte-base-composition-1k', 'PyMatting', 'GuidedFilter', ]
         device_list = ['cuda','cpu']
         return {
             "required": {
@@ -100,11 +100,11 @@ class MaskEdgeUltraDetailV3:
                     processed_trimap = tensor2pil(mask_edge_detail(_image, _mask, trimap_detail_range//8, black_point, white_point))
             else:
                 _trimap = generate_VITMatte_trimap(_mask, mask_edge_erode, mask_edge_dilate)
-                processed_mask = generate_VITMatte(orig_image, _trimap, local_files_only=local_files_only, device=device, max_megapixels=max_megapixels)
+                processed_mask = generate_VITMatte(orig_image, _trimap, local_files_only=local_files_only, device=device, max_megapixels=max_megapixels, method=method )
                 processed_mask = tensor2pil(histogram_remap(pil2tensor(processed_mask), black_point, white_point))
                 if transparent_trimap is not None:
                     _trimap = generate_VITMatte_trimap(_mask, transparent_trimap_erode, transparent_trimap_dilate)
-                    processed_trimap = generate_VITMatte(orig_image, _trimap, local_files_only=local_files_only, device=device, max_megapixels=max_megapixels)
+                    processed_trimap = generate_VITMatte(orig_image, _trimap, local_files_only=local_files_only, device=device, max_megapixels=max_megapixels, method=method)
                     processed_trimap = tensor2pil(histogram_remap(pil2tensor(processed_trimap), black_point, white_point))
 
             if transparent_trimap is not None:
