@@ -1,4 +1,4 @@
-# ComfyUI Layer Style
+# ComfyUI Layer Style 2026.02.17 fork 데이터
 
 ## Important note
 Split some nodes of the dependencies that are prone to problems into [ComfyUI_LayerStyle_Advance](https://github.com/chflame163/ComfyUI_LayerStyle_Advance) repository. Including:     
@@ -2600,3 +2600,4 @@ Part of the code for BlendMode V2 is from [Virtuoso Nodes for ComfyUI](https://g
 # statement
 
 LayerStyle nodes follows the MIT license, Some of its functional code comes from other open-source projects. Thanks to the original author. If used for commercial purposes, please refer to the original project license to authorization agreement.
+
